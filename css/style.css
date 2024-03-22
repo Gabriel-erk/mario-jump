@@ -103,3 +103,8 @@
         right: 100%;
     }
 }
+
+/* adicionando 'terra'*/
+body {
+    background-color: rgb(139, 73, 73);
+}
