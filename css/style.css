@@ -7,18 +7,20 @@
 }
 
 .game-board {
-    width: 80%;
+    /* definindo este valor agora no final do projeto, para estilizção  inicio: width: 80%*/
+    width: 100%;
     height: 500px;
-    /* para visualizar o espaço que ela esta ocupando */
-    border: 1px solid #333;
+    /* para visualizar o espaço que ela esta ocupando (estilizado, antes: border: 1px solid #ccc)*/
+    border-bottom: 15px solid rgb(35, 160, 35);
     /* centralizando a div - esta centralizando neste caso, pois a caixa tem a largura especificada (80%), o display, é do tipo block (elementos como div, vem por padrao neste display), a div ocupa 100% do conta iner pai (como a caixa pai nao tem largura especificada, ele puxa do container superior, o viewport do navegador, .game-board ocupa 80% da largura do viewport)  */
     margin: 0 auto;
     /* quero que as imagens que serao utilizadas aqui dentro, fique, somente aqui dentro, respeitando o limite os limites da div (se relaciona diretamente com o position absolute abaixo) */
     position: relative;
     /* para que, tudo que sair da delimitação da caixa .game-board, desapareça (quero que desapareça para fazer a animação do cano ir ate o final, sumir (depois ele apareçe novamente)) */
     overflow: hidden;
+    /* adicionando cor do fundo com linear-gradient(vai desta cor, ate esta cor) */
+    background: linear-gradient(#87ceed, #e0f6ff);
 }
-
 
 .pipe {
     /* como irei trabalhar com diversas imagens independentes, utilizarei position absolute para que uma nao interfira no comportamento da outra */
@@ -82,4 +84,22 @@
    100% {
     bottom: 0px;
    }
+}
+
+.clouds {
+    /* para nao interferir nas outras imagens (deixando elas normasi, elas afetam o tamanho da imagem do mario) */
+    position: absolute;
+    width: 550px;
+    animation: clouds-animation 20s infinite linear;
+}
+
+@keyframes clouds-animation {
+    from {
+        right: -550px
+    }
+
+    /* termina com o elemento desaparecendo da tela */
+    to {
+        right: 100%;
+    }
 }
