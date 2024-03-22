@@ -36,9 +36,10 @@ const loop = setInterval(() => {
     const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
 
     // mostrando no console do navegador, a posição atual do mario, ou seja, ao pular, ele mostra desde a posição inicial do mario ate a posição final em numeros
-    console.log(marioPosition)
+    // console.log(marioPosition)
 
-    const cloudsPosition = clouds.offsetRight;
+    /* utilizando a mesma coisa aqui, pois nao consegui acessar a propriedade right de clouds de outra maneira: const cloudsPosition = clouds.offsetRight (sempre retornava um valor undefined) */
+    const cloudsPosition = +window.getComputedStyle(clouds).right.replace('px', '');
 
     // se a posição esquerda do tubo for 120 e a posição do tubo for maior que 0 (ou seja, o tubo ainda esta abaixo do mario, em outras palavras, o tubo ainda nao saiu da tela, quando ele sair da tela(ou seja, quando sua posição for menor que 0, pois 0 é a posição em que o tubo nao aparece mais) significa que o tubo nao vai mais estar embaixo do mario, e nao tem como ele cair e acertar o tubo, ja que, se parar para reparar, a posição do mario, nao muda, somente a do tubo, e enquanto o tubo estiver na posição acima de 0 o mario pode acertar o tubo) e a posição do mario menor que 80 (no caso, se a altura que o mario esta for menor que 80, significa que ele atingiu o tubo) o jogo acaba
     if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
@@ -68,6 +69,8 @@ const loop = setInterval(() => {
 
         clouds.style.animation = 'none';
         clouds.style.right = `${cloudsPosition}px`;
+        // para ver se estava enviando o valor para cloud position (que estava dando undefined)
+        console.log(cloudsPosition);
 
         /* cancelando a execulçao do intervalo de tempo em que o loop sera executado(verificando continuamente as posições do tubo e do mario, que acaba se repetindo ifinitamente quando as condições sao atendidas), passando o identificador do intervalo que quero cancelar, que esta armazenado dentro da variavel constante chamada 'loop' (ou seja, depois da função ser executada uma vez, nao sera executada novamente apos 10 milisegundos - o loop para de rodar)*/
         clearInterval(loop);
