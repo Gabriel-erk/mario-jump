@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- o atributo defer, diz que, o conteudo de script (main.js), deve ser executado depois do html ser completamente analisado e construido, mas antes do `DOMContentLoaded`, que é adicionado quando o html esta pronto para ser manipulado pelo js (Isso significa que o script main.js será executado na ordem em que aparece no documento, após o HTML ser totalmente carregado, mas antes de qualquer manipulação adicional do DOM.) - o navegador carrega o script em segundo plano enquanto continua a construir a pagina -->
+    <script src="./js/main.js" defer></script>
+    <title>Mario Jump</title>
+</head>
+<body>
+    <div class="game-board">
+
+        <!-- esta imagem é um gif animado -->
+        <img src="./images/mario.gif" class="mario">
+        <img src="./images/pipe.png" class="pipe">
+
+    </div>
+</body>
+</html>
