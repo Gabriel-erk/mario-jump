@@ -1,4 +1,3 @@
-
 const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const clouds = document.querySelector('.clouds');
@@ -13,57 +12,53 @@ let endLoop3 = false;
 
 function tempoScore() {
 
-
     if (endLoop1 == false) {
         const loopScore = setInterval(() => {
             if (endLoop1) {
                 clearInterval(loopScore);
-                endLoop2 = true
-                endLoop3 = true
+                endLoop2 = true;
+                endLoop3 = true;
             }
-            else if(endLoop1 == true){
-                
+            else {
+                scoreInt++
+                scoreString.textContent = scoreInt;
             }
-            scoreInt++
-            scoreString.textContent = scoreInt;
         }, 1000);
 
         setTimeout(() => {
             clearInterval(loopScore);
-            const loopScore2 = setInterval(() => {
-
-                if (endLoop2) {
-                    clearInterval(loopScore2)
-                }
-                scoreInt += 10;
-                scoreString.textContent = scoreInt;
-            }, 1000);
-
-            setTimeout(() => {
-                clearInterval(loopScore2);
-                const loopScore3 = setInterval(() => {
-                    if (endLoop3) {
-                        clearInterval(loopScore3);
+            if (!endLoop1) {
+                const loopScore2 = setInterval(() => {
+                    if (endLoop2) {
+                        clearInterval(loopScore2)
                     }
-                    scoreInt += 20;
-                    scoreString.textContent = scoreInt;
-
+                    else {
+                        scoreInt += 10;
+                        scoreString.textContent = scoreInt;
+                    }
                 }, 1000);
-            }, 10000);
+
+                setTimeout(() => {
+                    clearInterval(loopScore2);
+                    if (!endLoop1) {
+                        const loopScore3 = setInterval(() => {
+                            if (endLoop3) {
+                                clearInterval(loopScore3);
+                            }
+                            else {
+                                scoreInt += 20;
+                                scoreString.textContent = scoreInt;
+                            }
+                        }, 1000);
+                    }
+                }, 10000);
+            }
         }, 10000);
-
     }
-
-
-
 }
 
-// tempoScore();
-
 const jump = () => {
-
     mario.classList.add('jump');
-
     setTimeout(() => {
         mario.classList.remove('jump');
     }, 500);
@@ -72,15 +67,12 @@ const jump = () => {
 document.addEventListener('keydown', jump);
 
 const loop = setInterval(() => {
-
     const pipePosition = pipe.offsetLeft;
     const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
     const cloudsPosition = +window.getComputedStyle(clouds).right.replace('px', '');
 
     if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
-
         pipe.style.animation = 'none';
-
         pipe.style.left = `${pipePosition}px`;
 
         mario.style.animation = 'none';
@@ -95,7 +87,6 @@ const loop = setInterval(() => {
         clearInterval(loop);
         endLoop1 = true;
         endLoop2 = true;
-        endLoop3 = true;
     }
 }, 10);
 
