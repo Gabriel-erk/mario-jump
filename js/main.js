@@ -11,14 +11,6 @@ const scoreString = document.getElementById('score');
 // variavel que armazena o score inicial
 let scoreInt = 0;
 
-// defininDo que a variavel constante loopScore vai ter um loop, que vai aumentar o score de um em um, a cada 1 segundo
-// const loopScore = setInterval(() =>{
-//     scoreInt++;
-//     scoreString.textContent = scoreInt;
-// }, 1000); 
-
-// const startTime = Date.now();
-// const tempoDecorrido = Date.now() - startTime;
 
 function tempoScore() {
 
@@ -115,6 +107,6 @@ const loop = setInterval(() => {
 
         /* cancelando a execulçao do intervalo de tempo em que o loop sera executado(verificando continuamente as posições do tubo e do mario, que acaba se repetindo ifinitamente quando as condições sao atendidas), passando o identificador do intervalo que quero cancelar, que esta armazenado dentro da variavel constante chamada 'loop' (ou seja, depois da função ser executada uma vez, nao sera executada novamente apos 10 milisegundos - o loop para de rodar)*/
         clearInterval(loop);
-        clearInterval(loopScore3);
+        clearInterval(tempoScore(loopScore3));
     }
 }, 10);
