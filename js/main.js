@@ -21,7 +21,7 @@ function tempoScore() {
             }
             else {
                 scoreInt++
-                scoreString.textContent = scoreInt;
+                scoreString.textContent = `Score: ${scoreInt}`;
             }
         }, 1000);
 
@@ -39,14 +39,14 @@ function tempoScore() {
                     // se nao, execute isto
                     else {
                         scoreInt += 10;
-                        scoreString.textContent = scoreInt;
+                        scoreString.textContent = `Score: ${scoreInt}`;
                     }
                 }, 1000);
 
                 setTimeout(() => {
                     clearInterval(loopScore2);
 
-                    // se endLoop1 for falso, execute isto
+                    // se endLoop1 for falso, execute isto (ou seja, se isto nao é a condição esperada (true), execute isto)
                     if (!endLoop1) {
                         const loopScore3 = setInterval(() => {
                             // se endLoop3 for verdadeiro, execute isto
@@ -56,7 +56,7 @@ function tempoScore() {
                             // se nao, execute isto
                             else {
                                 scoreInt += 20;
-                                scoreString.textContent = scoreInt;
+                                scoreString.textContent = `Score: ${scoreInt}`;
                             }
                         }, 1000);
                     }
