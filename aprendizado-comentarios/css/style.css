@@ -1,0 +1,110 @@
+/* colocando um reset, removendo configurações padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    /* inclui o preenchimento (padding) e a borda na hora de calcular a largura */
+    box-sizing: border-box;
+}
+
+.game-board {
+    /* definindo este valor agora no final do projeto, para estilizção  inicio: width: 80%*/
+    width: 100%;
+    height: 500px;
+    /* para visualizar o espaço que ela esta ocupando (estilizado, antes: border: 1px solid #ccc)*/
+    border-bottom: 15px solid rgb(35, 160, 35);
+    /* centralizando a div - esta centralizando neste caso, pois a caixa tem a largura especificada (80%), o display, é do tipo block (elementos como div, vem por padrao neste display), a div ocupa 100% do conta iner pai (como a caixa pai nao tem largura especificada, ele puxa do container superior, o viewport do navegador, .game-board ocupa 80% da largura do viewport)  */
+    margin: 0 auto;
+    /* quero que as imagens que serao utilizadas aqui dentro, fique, somente aqui dentro, respeitando o limite os limites da div (se relaciona diretamente com o position absolute abaixo) */
+    position: relative;
+    /* para que, tudo que sair da delimitação da caixa .game-board, desapareça (quero que desapareça para fazer a animação do cano ir ate o final, sumir (depois ele apareçe novamente)) */
+    overflow: hidden;
+    /* adicionando cor do fundo com linear-gradient(vai desta cor, ate esta cor) */
+    background: linear-gradient(#87ceed, #e0f6ff);
+}
+
+.pipe {
+    /* como irei trabalhar com diversas imagens independentes, utilizarei position absolute para que uma nao interfira no comportamento da outra */
+    position: absolute;
+    /* que o deixara fixo na parte inferior da div () */
+    bottom: 0;
+    width: 80px;
+    /* chamando a animação que criei abaixo, definindo que o tempo que ela vai ocorrer na tela é de 2 segundos, e que repita por um periodo ifinito de tempo - 'linear', que o seu movimento seja linear, com a mesma velocidade durante sua execuçao inteira (começa em uma velocidade e termina na mesma)*/
+    animation: pipe-animation 1.5s infinite linear;
+}
+
+/* um keyframe é uma regra que especifica comom uma animação deve ocrorrer ao longo do tempo, definindo uma serie de etapas ou "keyframes", que descrevem mudanças de estilo que ocorrem em momentos especificos durante a animação  - logo depois da palavra reservada vem o nome que quero atribuir a animação */
+@keyframes pipe-animation {
+    /* defininfo onde a animação começa */
+ from {
+    /* começa fora da caixa, para simplesmente nao surgir do nada e de forma seca (com base na sua largura (80px, -80px aqui na posição direita)), com isso a animação se torna mais limpa, vindo de fora - alterando propriedas do position absolute (right)  */
+    right: -80px;
+ }
+/* definindo onde ela termina (termina na posição em que some da caixa) */
+ to {
+    right: 100%;
+ }
+}
+
+.mario {
+    width: 150px;
+    /* para que o comportamento desta imagem nao interfira no comportamento das outras */
+    position: absolute;
+    /* posicionando ele no inferior da caixa game-board */
+    bottom: 0;
+
+}
+
+.jump {
+    /* ease-out para dar um efeito mais suave na animação - a animação começa em uma maior velocidade e diminui confrome chega perto do fim, dando uma sensação de suavidade para a animação (essa é a função do ease-out)j */
+    animation: jump 500ms ease-out;
+}
+
+@keyframes jump {
+    /* quando estiver em 0% da animação*/
+   0% {
+    bottom: 0px;
+   }
+
+   /* colocando pontos intermediaros, para que, de a sensaçao que ele fica no ar mais um tempo antes de cair - nessas 3 etapas da animação o bottom permanecera em 180px (40%, 50% e 60%) */
+   40% {
+    bottom: 180px;
+   }
+
+   /* quando estiver no meio da animação  - utilizarei o bottom para fazer ele subir , nao necessariamente sera necessario o top*/
+   50% {
+    bottom: 180px;
+   }
+
+   /* colocando pontos intermediaros, para que, de a sensaçao que ele fica no ar mais um tempo antes de cair */
+   60% {
+    bottom: 180px;
+   }
+
+   /* quando estiver em 100% da animação (utlima etapa) */
+   100% {
+    bottom: 0px;
+   }
+}
+
+.clouds {
+    /* para nao interferir nas outras imagens (deixando elas normasi, elas afetam o tamanho da imagem do mario) */
+    position: absolute;
+    width: 550px;
+    animation: clouds-animation 20s infinite linear;
+}
+
+@keyframes clouds-animation {
+    from {
+        right: -550px
+    }
+
+    /* termina com o elemento desaparecendo da tela */
+    to {
+        right: 100%;
+    }
+}
+
+/* adicionando 'terra' */
+body {
+    background-color: rgb(139, 73, 73);
+}
