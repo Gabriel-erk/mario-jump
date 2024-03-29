@@ -1,2 +1,12 @@
-# jogo-mario
-criando um simples jogo do mario com html, css e JS
+# Mario Jump
+
+![preview](./images/marioReadMe.png)
+
+[Clique aqui para acessar](https://gabriel-erk.github.io/jogo-mario/)
+
+## Tecnologias
+
+- HTML
+- CSS
+- JavaScript
+
