@@ -8,26 +8,38 @@ let scoreInt = 0;
 let endLoop = false;
 
 function tempoScore() {
-    
-    let loopScore = setInterval(() =>{
 
-        if(endLoop){
+    let loopScore = setInterval(() => {
+
+        if (endLoop) {
             clearInterval(loopScore);
         }
-        scoreInt++
-        scoreString.textContent = `Score: ${scoreInt}`;
-
-        if (scoreString >= 10){
-            scoreInt += 10;
-            scoreString.textContent = scoreInt;
-        }
-        else if (scoreInt >= 20){
-            scoreInt += 20
-            scoreString.textContent = scoreInt;
+        else {
+            if (scoreInt <= 9) {
+                scoreInt++
+                scoreString.textContent = `Score: ${scoreInt}`;
+                if (endLoop) {
+                    clearInterval (loopScore);
+                }
+            }
+            else{
+                if (endLoop) {
+                    clearInterval(loopScore)
+                }
+                else if (scoreInt <= 90) {
+                    scoreInt += 10;
+                    scoreString.textContent = scoreInt;
+                }
+                else if (scoreInt >= 100) {
+                    scoreInt += 20;
+                    scoreString.textContent = scoreInt
+                }
+            }
         }
     }, 1000)
-    
 }
+
+tempoScore()
 
 const jump = () => {
     mario.classList.add('jump');
@@ -44,6 +56,7 @@ const loop = setInterval(() => {
     const cloudsPosition = +window.getComputedStyle(clouds).right.replace('px', '');
 
     if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
+
         pipe.style.animation = 'none';
         pipe.style.left = `${pipePosition}px`;
 
@@ -60,5 +73,3 @@ const loop = setInterval(() => {
         endLoop = true;
     }
 }, 10);
-
-tempoScore();
