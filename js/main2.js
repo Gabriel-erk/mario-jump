@@ -3,42 +3,30 @@ const pipe = document.querySelector('.pipe');
 const clouds = document.querySelector('.clouds');
 
 const scoreString = document.getElementById('score');
+const gameBoard = document.getElementById('gameBoard');
+const container = document.getElementById('container');
 
 let scoreInt = 0;
 let endLoop = false;
 
 function tempoScore() {
-
     let loopScore = setInterval(() => {
-
         if (endLoop) {
             clearInterval(loopScore);
+            return; // Encerra o intervalo se endLoop for verdadeiro
         }
-        else {
-            if (scoreInt <= 9) {
-                scoreInt++
-                scoreString.textContent = `Score: ${scoreInt}`;
-                if (endLoop) {
-                    clearInterval (loopScore);
-                }
-            }
-            else{
-                if (endLoop) {
-                    clearInterval(loopScore)
-                }
-                else if (scoreInt <= 90) {
-                    scoreInt += 10;
-                    scoreString.textContent = scoreInt;
-                }
-                else if (scoreInt >= 100) {
-                    scoreInt += 20;
-                    scoreString.textContent = scoreInt
-                }
-            }
-        }
-    }, 1000)
-}
 
+        if (scoreInt <= 9) {
+            scoreInt++;
+        } else if (scoreInt <= 90) {
+            scoreInt += 10;
+        } else {
+            scoreInt += 20;
+        }
+
+        scoreString.textContent = `Score: ${scoreInt}`;
+    }, 1000);
+}
 tempoScore()
 
 const jump = () => {
@@ -68,8 +56,32 @@ const loop = setInterval(() => {
 
         clouds.style.animation = 'none';
         clouds.style.right = `${cloudsPosition}px`;
-
+        
         clearInterval(loop);
         endLoop = true;
+
+        const divAgrupaGameOver = document.createElement('div');
+        divAgrupaGameOver.id = 'agrupaGameOver';
+
+        container.appendChild(divAgrupaGameOver);
+
+        const gameOver = document.createElement('h1');
+        gameOver.textContent = 'Fim de Jogo';
+        gameOver.classList.add('gameOver');
+
+        divAgrupaGameOver.appendChild(gameOver);
+
+        const restart = document.createElement('a');
+        restart.classList.add('restartButton');
+        restart.textContent = 'Deseja Reiniciar o jogo?';
+        
+        restart.addEventListener('click', function(){
+            // função para reiniciar o jogo (atualizar a página, por padrão, recarrega a partir do cache do navegador, podendo receber parametos que mudam este comportamento)
+            window.location.reload();
+        })
+
+        divAgrupaGameOver.appendChild(restart);
+
+        
     }
 }, 10);

@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    
+
     box-sizing: border-box;
 }
 
@@ -19,26 +19,25 @@
 }
 
 .pipe {
-    
+
     position: absolute;
-    
+
     bottom: 0;
     width: 80px;
-    
+
     animation: pipe-animation 1.5s infinite linear;
 }
 
 
 @keyframes pipe-animation {
-    
- from {
-    
-    right: -80px;
- }
 
- to {
-    right: 100%;
- }
+    from {
+        right: -80px;
+    }
+
+    to {
+        right: 100%;
+    }
 }
 
 .mario {
@@ -53,26 +52,26 @@
 }
 
 @keyframes jump {
-    
-   0% {
-    bottom: 0px;
-   }
 
-   40% {
-    bottom: 180px;
-   }
+    0% {
+        bottom: 0px;
+    }
 
-   50% {
-    bottom: 180px;
-   }
+    40% {
+        bottom: 180px;
+    }
 
-   60% {
-    bottom: 180px;
-   }
+    50% {
+        bottom: 180px;
+    }
 
-   100% {
-    bottom: 0px;
-   }
+    60% {
+        bottom: 180px;
+    }
+
+    100% {
+        bottom: 0px;
+    }
 }
 
 .clouds {
@@ -96,4 +95,31 @@ body {
     background-color: rgb(139, 73, 73);
     font-family: "Pixelify Sans", sans-serif;
     font-size: 19px;
+}
+
+.score {
+    /* para garantir que o z-index funcione */
+    position: relative;
+    /* comando para fazer com que o elemento html se sobreponha das outras imagens (devido ao contexto atual de a caixa pai ter position relative, e as imagens filhas position absolute) */
+    z-index: 1;
+}
+
+
+.restartButton {
+    cursor: pointer;
+}
+
+.restartButton:hover {
+    color: blue;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}
+
+#agrupaGameOver {
+    text-align: center;
 }

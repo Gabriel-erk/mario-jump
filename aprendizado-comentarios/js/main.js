@@ -14,30 +14,23 @@ let loopScore3 = 1;
 
 function tempoScore() {
 
-    const loopScore = setInterval(() => {
-        scoreInt++
-        scoreString.textContent = scoreInt;
-    }, 1000);
+    let loopScore = setInterval(() => {
+        // se endLoop for verdadeiro, encerra o loop, e utiliza return, para encerrar o intervalo e não percorrer o restante do código, ou seja, nao verifica os outros if (sem o return, mesmo encerrando o intervalo, ainda seria verificado o primeiro if, adicionando mesmo se jogador perder)
+        if (endLoop) {
+            clearInterval(loopScore);
+            return; // Encerra o intervalo se endLoop for verdadeiro
+        }
 
-    setTimeout(() => {
-        clearInterval(loopScore);
-        const loopScore2 = setInterval(() => {
+        if (scoreInt <= 9) {
+            scoreInt++;
+        } else if (scoreInt <= 90) {
             scoreInt += 10;
-            scoreString.textContent = scoreInt;
-        }, 1000);
+        } else {
+            scoreInt += 20;
+        }
 
-        setTimeout(() => {
-            clearInterval(loopScore2);
-            loopScore3 = setInterval(() => {
-                scoreInt += 20;
-                scoreString.textContent = scoreInt;
-                if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
-                    clearInterval(loopScore3);
-                }
-            }, 1000);
-        }, 10000); // apos 10 segundos adicionais (20 em 20)
-    }, 10000); // apos 10 segundos (10 em 10)
-
+        scoreString.textContent = `Score: ${scoreInt}`;
+    }, 1000);
 }
 
 // criando função jump, que adiciona a classe jump do css (que executa a animação do mario, de pular)
