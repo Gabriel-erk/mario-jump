@@ -2,7 +2,7 @@
 
 ![preview](./images/marioReadMe.png)
 
-[Clique aqui para acessar]([https://gabriel-erk.github.io/jogo-mario/](https://gabriel-erk.github.io/mario-jump/))
+[Clique aqui para acessar](https://gabriel-erk.github.io/mario-jump/)
 
 ## Tecnologias
 
