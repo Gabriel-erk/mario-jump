@@ -1,11 +1,15 @@
 const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const clouds = document.querySelector('.clouds');
+const gameBoardCss = document.querySelector('.game-board');
 
 const scoreString = document.getElementById('score');
 const gameBoard = document.getElementById('gameBoard');
 const container = document.getElementById('container');
 
+// gameBoardCss.style.background = 'linear-gradient(#8a2be2, #e0f6ff)';
+
+// fazendo o score funcionar
 let scoreInt = 0;
 let endLoop = false;
 
@@ -24,25 +28,42 @@ function tempoScore() {
             scoreInt += 20;
         }
 
+        if(scoreInt > 500){
+            gameBoardCss.style.background = 'linear-gradient(#8a2be2, #e0f6ff)';
+        }
+
         scoreString.textContent = `Score: ${scoreInt}`;
     }, 1000);
 }
 tempoScore()
 
+// fazendo a animação do pulo funcionar
+
 const jump = () => {
+    /* 
+    * adiciona a classe, realizando a animação
+    * porém, voce não consegue utilizar novamente, já que a classe está aplicada, não da pra aplicar a mesma classe repetidad vezes
+    * */
     mario.classList.add('jump');
+    /*
+    * removendo a classe a cada meio segundo 
+    * quando chamar a função, adiciona a classe, faz a animação, e a remove meio segundo dps, para quando chamar, ela poder fazer a animação adicionando a classe novamente 
+    */
     setTimeout(() => {
         mario.classList.remove('jump');
     }, 500);
 }
 
+// deixando um evento ouvinte no documento html, para quando pressionar a seta para baixo, chamar a função jump
 document.addEventListener('keydown', jump);
 
+// fazendo o tubo, as nuvens, game over e o 'reiniciar' funcionarem
 const loop = setInterval(() => {
     const pipePosition = pipe.offsetLeft;
     const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
     const cloudsPosition = +window.getComputedStyle(clouds).right.replace('px', '');
 
+    // se essas condições forem verdadeiras, significa que o mario perdeu, significa que ele tocou o tubo
     if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
 
         pipe.style.animation = 'none';
@@ -82,6 +103,5 @@ const loop = setInterval(() => {
 
         divAgrupaGameOver.appendChild(restart);
 
-        
     }
 }, 10);
