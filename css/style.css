@@ -114,9 +114,20 @@ body {
     z-index: 1;
 }
 
+/* colocando div no centro da tela */
+
+#agrupaGameOver {
+    position: absolute;
+    top: 30%;
+    left: 47%;
+    transform: translate(-30%, -47%);
+}
+
 
 .restartButton {
     cursor: pointer;
+    /* position: absolute;
+    top: 0; */
 }
 
 .restartButton:hover {
